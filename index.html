@@ -1,0 +1,705 @@
+I'll create a modern, professional affiliate website for Fiverr services with all the requested features. Let me build this as a single HTML file with embedded CSS and JavaScript.
+
+
+I need to create a comprehensive affiliate website for Fiverr services. The user wants:
+1. Modern, professional, mobile-friendly design
+2. Hero section with headline and CTA button
+3. Popular categories with icons and descriptions
+4. Featured services section
+5. Blog/tips section
+6. Testimonials section
+7. Footer with disclaimer, contact form, and social links
+8. Minimalist design with green/blue/white colors
+9. Responsive navigation and smooth scrolling
+10. Premium and trustworthy appearance
+
+I'll use Tailwind CSS for styling and create a responsive, conversion-focused design with proper affiliate disclosure.
+
+
+`index.html`
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiverr Pro - Find Top Freelancers for Your Projects</title>
+    <meta name="description" content="Discover the best freelancers for your projects on Fiverr. Graphic design, writing, programming, marketing, and more. Quality work at affordable prices.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #1dbf73;
+            --primary-blue: #446ee7;
+            --dark-text: #222325;
+            --light-gray: #f5f5f5;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-green) 100%);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-scroll {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-green-600">Fiverr<span class="text-blue-600">Pro</span></span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-green-600 font-medium">Home</a>
+                    <a href="#categories" class="text-gray-700 hover:text-green-600 font-medium">Categories</a>
+                    <a href="#services" class="text-gray-700 hover:text-green-600 font-medium">Services</a>
+                    <a href="#blog" class="text-gray-700 hover:text-green-600 font-medium">Blog</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-green-600 font-medium">Testimonials</a>
+                </div>
+                
+                <div class="hidden md:block">
+                    <a href="https://www.fiverr.com/" target="_blank" rel="nofollow" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+                        Find Services
+                    </a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-700">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="text-gray-700 hover:text-green-600 font-medium py-2">Home</a>
+                    <a href="#categories" class="text-gray-700 hover:text-green-600 font-medium py-2">Categories</a>
+                    <a href="#services" class="text-gray-700 hover:text-green-600 font-medium py-2">Services</a>
+                    <a href="#blog" class="text-gray-700 hover:text-green-600 font-medium py-2">Blog</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-green-600 font-medium py-2">Testimonials</a>
+                    <a href="https://www.fiverr.com/" target="_blank" rel="nofollow" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium text-center">
+                        Find Services
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white pt-24 pb-20 md:pt-32 md:pb-28">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                        Find the Right Freelancer for Your Project
+                    </h1>
+                    <p class="text-xl mb-8 opacity-90">
+                        Connect with top-rated freelancers worldwide for all your creative and professional needs. Quality work delivered on time, every time.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://www.fiverr.com/" target="_blank" rel="nofollow" class="bg-white text-green-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg text-center transition-colors">
+                            Start Your Project Now
+                        </a>
+                        <a href="#services" class="border-2 border-white text-white hover:bg-white hover:text-green-600 px-8 py-4 rounded-lg font-semibold text-lg text-center transition-colors">
+                            Explore Services
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://placehold.co/600x400" alt="Diverse team of creative professionals collaborating on digital projects in a modern workspace" class="rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Popular Categories</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Choose from thousands of skilled professionals across various creative and technical fields</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Category 1 -->
+                <div class="category-card bg-white rounded-2xl p-8 shadow-lg transition-all duration-300">
+                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-paint-brush text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Graphic Design</h3>
+                    <p class="text-gray-600 mb-4">Logo design, branding, social media graphics, and stunning visual content</p>
+                    <a href="https://www.fiverr.com/categories/graphics-design" target="_blank" rel="nofollow" class="text-green-600 font-medium hover:text-green-700">
+                        Explore Design Services →
+                    </a>
+                </div>
+                
+                <!-- Category 2 -->
+                <div class="category-card bg-white rounded-2xl p-8 shadow-lg transition-all duration-300">
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-pencil-alt text-3xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Writing & Translation</h3>
+                    <p class="text-gray-600 mb-4">Content writing, copywriting, translation, and professional editing services</p>
+                    <a href="https://www.fiverr.com/categories/writing-translation" target="_blank" rel="nofollow" class="text-green-600 font-medium hover:text-green-700">
+                        Explore Writing Services →
+                    </a>
+                </div>
+                
+                <!-- Category 3 -->
+                <div class="category-card bg-white rounded-2xl p-8 shadow-lg transition-all duration-300">
+                    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-3xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Digital Marketing</h3>
+                    <p class="text-gray-600 mb-4">SEO, social media marketing, email campaigns, and growth strategies</p>
+                    <a href="https://www.fiverr.com/categories/online-marketing" target="_blank" rel="nofollow" class="text-green-600 font-medium hover:text-green-700">
+                        Explore Marketing Services →
+                    </a>
+                </div>
+                
+                <!-- Category 4 -->
+                <div class="category-card bg-white rounded-2xl p-8 shadow-lg transition-all duration-300">
+                    <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-3xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Programming & Tech</h3>
+                    <p class="text-gray-600 mb-4">Web development, mobile apps, software solutions, and technical support</p>
+                    <a href="https://www.fiverr.com/categories/programming-tech" target="_blank" rel="nofollow" class="text-green-600 font-medium hover:text-green-700">
+                        Explore Tech Services →
+                    </a>
+                </div>
+                
+                <!-- Category 5 -->
+                <div class="category-card bg-white rounded-2xl p-8 shadow-lg transition-all duration-300">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-video text-3xl text-yellow-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Video & Animation</h3>
+                    <p class="text-gray-600 mb-4">Video editing, animation, explainer videos, and motion graphics</p>
+                    <a href="https://www.fiverr.com/categories/video-animation" target="_blank" rel="nofollow" class="text-green-600 font-medium hover:text-green-700">
+                        Explore Video Services →
+                    </a>
+                </div>
+                
+                <!-- Category 6 -->
+                <div class="category-card bg-white rounded-2xl p-8 shadow-lg transition-all duration-300">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-microphone text-3xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Music & Audio</h3>
+                    <p class="text-gray-600 mb-4">Voice overs, audio production, music composition, and sound design</p>
+                    <a href="https://www.fiverr.com/categories/music-audio" target="_blank" rel="nofollow" class="text-green-600 font-medium hover:text-green-700">
+                        Explore Audio Services →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Featured Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Hand-picked services from top-rated Fiverr professionals</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://placehold.co/400x300" alt="Professional logo design process showing sketches, digital mockups, and final branding package" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Premium Logo Design</h3>
+                        <p class="text-gray-600 mb-4">Professional logo with unlimited revisions and brand guidelines</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-green-600">From $50</span>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-medium">4.9</span>
+                                <span class="text-gray-500 ml-1">(247)</span>
+                            </div>
+                        </div>
+                        <a href="https://www.fiverr.com/search/gigs?query=logo+design&source=top_bar&search_in=everywhere&search-autocomplete-original-term=logo+design" target="_blank" rel="nofollow" class="block w-full bg-green-600 hover:bg-green-700 text-white text-center py-3 rounded-lg font-semibold transition-colors">
+                            View Service
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://placehold.co/400x300" alt="Website development dashboard showing responsive design mockups and coding interface" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Website Development</h3>
+                        <p class="text-gray-600 mb-4">Custom responsive website with modern design and SEO optimization</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-green-600">From $150</span>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-medium">4.8</span>
+                                <span class="text-gray-500 ml-1">(189)</span>
+                            </div>
+                        </div>
+                        <a href="https://www.fiverr.com/search/gigs?query=website+development&source=top_bar&search_in=everywhere&search-autocomplete-original-term=website+development" target="_blank" rel="nofollow" class="block w-full bg-green-600 hover:bg-green-700 text-white text-center py-3 rounded-lg font-semibold transition-colors">
+                            View Service
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://placehold.co/400x300" alt="Professional voice over recording studio setup with high-quality microphone and audio equipment" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Professional Voice Over</h3>
+                        <p class="text-gray-600 mb-4">Crystal clear voice recordings for commercials, videos, and presentations</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-green-600">From $30</span>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-medium">4.9</span>
+                                <span class="text-gray-500 ml-1">(312)</span>
+                            </div>
+                        </div>
+                        <a href="https://www.fiverr.com/search/gigs?query=voice+over&source=top_bar&search_in=everywhere&search-autocomplete-original-term=voice+over" target="_blank" rel="nofollow" class="block w-full bg-green-600 hover:bg-green-700 text-white text-center py-3 rounded-lg font-semibold transition-colors">
+                            View Service
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://www.fiverr.com/" target="_blank" rel="nofollow" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors">
+                    Explore All Services
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog/Tips Section -->
+    <section id="blog" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Freelancing Tips & Insights</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Expert advice to help you succeed with freelance services</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://placehold.co/400x300" alt="Business person reviewing project timeline and milestones on digital tablet" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-sm text-green-600 font-semibold">Project Management</span>
+                        <h3 class="text-xl font-semibold mb-3 mt-2">How to Effectively Manage Remote Freelancers</h3>
+                        <p class="text-gray-600 mb-4">Learn best practices for communication, deadlines, and quality control when working with remote talent.</p>
+                        <a href="#" class="text-green-600 font-medium hover:text-green-700">Read More →</a>
+                    </div>
+                </article>
+                
+                <!-- Article 2 -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://placehold.co/400x300" alt="Comparative analysis showing budget savings from outsourcing versus in-house hiring" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-sm text-blue-600 font-semibold">Cost Savings</span>
+                        <h3 class="text-xl font-semibold mb-3 mt-2">Maximizing ROI with Freelance Services</h3>
+                        <p class="text-gray-600 mb-4">Discover how businesses save up to 60% on operational costs by leveraging freelance talent.</p>
+                        <a href="#" class="text-green-600 font-medium hover:text-green-700">Read More →</a>
+                    </div>
+                </article>
+                
+                <!-- Article 3 -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://placehold.co/400x300" alt
+```
+
+🎨 **Generating images based on descriptions...**
+
+✅ **Images generated successfully! Here's your updated content:**
+
+`index.html`
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiverr Pro - Find Top Freelancers for Your Projects</title>
+    <meta name="description" content="Discover the best freelancers for your projects on Fiverr. Graphic design, writing, programming, marketing, and more. Quality work at affordable prices.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #1dbf73;
+            --primary-blue: #446ee7;
+            --dark-text: #222325;
+            --light-gray: #f5f5f5;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-green) 100%);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-scroll {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-green-600">Fiverr<span class="text-blue-600">Pro</span></span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-green-600 font-medium">Home</a>
+                    <a href="#categories" class="text-gray-700 hover:text-green-600 font-medium">Categories</a>
+                    <a href="#services" class="text-gray-700 hover:text-green-600 font-medium">Services</a>
+                    <a href="#blog" class="text-gray-700 hover:text-green-600 font-medium">Blog</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-green-600 font-medium">Testimonials</a>
+                </div>
+                
+                <div class="hidden md:block">
+                    <a href="https://www.fiverr.com/" target="_blank" rel="nofollow" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+                        Find Services
+                    </a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-700">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="text-gray-700 hover:text-green-600 font-medium py-2">Home</a>
+                    <a href="#categories" class="text-gray-700 hover:text-green-600 font-medium py-2">Categories</a>
+                    <a href="#services" class="text-gray-700 hover:text-green-600 font-medium py-2">Services</a>
+                    <a href="#blog" class="text-gray-700 hover:text-green-600 font-medium py-2">Blog</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-green-600 font-medium py-2">Testimonials</a>
+                    <a href="https://www.fiverr.com/" target="_blank" rel="nofollow" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium text-center">
+                        Find Services
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white pt-24 pb-20 md:pt-32 md:pb-28">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                        Find the Right Freelancer for Your Project
+                    </h1>
+                    <p class="text-xl mb-8 opacity-90">
+                        Connect with top-rated freelancers worldwide for all your creative and professional needs. Quality work delivered on time, every time.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://www.fiverr.com/" target="_blank" rel="nofollow" class="bg-white text-green-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg text-center transition-colors">
+                            Start Your Project Now
+                        </a>
+                        <a href="#services" class="border-2 border-white text-white hover:bg-white hover:text-green-600 px-8 py-4 rounded-lg font-semibold text-lg text-center transition-colors">
+                            Explore Services
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/63ae78b0-0c90-4864-be53-4f7cc2e8fdeb.png" alt="Diverse team of creative professionals collaborating on digital projects in a modern workspace" class="rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Popular Categories</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Choose from thousands of skilled professionals across various creative and technical fields</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Category 1 -->
+                <div class="category-card bg-white rounded-2xl p-8 shadow-lg transition-all duration-300">
+                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-paint-brush text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Graphic Design</h3>
+                    <p class="text-gray-600 mb-4">Logo design, branding, social media graphics, and stunning visual content</p>
+                    <a href="https://www.fiverr.com/categories/graphics-design" target="_blank" rel="nofollow" class="text-green-600 font-medium hover:text-green-700">
+                        Explore Design Services →
+                    </a>
+                </div>
+                
+                <!-- Category 2 -->
+                <div class="category-card bg-white rounded-2xl p-8 shadow-lg transition-all duration-300">
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-pencil-alt text-3xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Writing & Translation</h3>
+                    <p class="text-gray-600 mb-4">Content writing, copywriting, translation, and professional editing services</p>
+                    <a href="https://www.fiverr.com/categories/writing-translation" target="_blank" rel="nofollow" class="text-green-600 font-medium hover:text-green-700">
+                        Explore Writing Services →
+                    </a>
+                </div>
+                
+                <!-- Category 3 -->
+                <div class="category-card bg-white rounded-2xl p-8 shadow-lg transition-all duration-300">
+                    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-3xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Digital Marketing</h3>
+                    <p class="text-gray-600 mb-4">SEO, social media marketing, email campaigns, and growth strategies</p>
+                    <a href="https://www.fiverr.com/categories/online-marketing" target="_blank" rel="nofollow" class="text-green-600 font-medium hover:text-green-700">
+                        Explore Marketing Services →
+                    </a>
+                </div>
+                
+                <!-- Category 4 -->
+                <div class="category-card bg-white rounded-2xl p-8 shadow-lg transition-all duration-300">
+                    <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-3xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Programming & Tech</h3>
+                    <p class="text-gray-600 mb-4">Web development, mobile apps, software solutions, and technical support</p>
+                    <a href="https://www.fiverr.com/categories/programming-tech" target="_blank" rel="nofollow" class="text-green-600 font-medium hover:text-green-700">
+                        Explore Tech Services →
+                    </a>
+                </div>
+                
+                <!-- Category 5 -->
+                <div class="category-card bg-white rounded-2xl p-8 shadow-lg transition-all duration-300">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-video text-3xl text-yellow-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Video & Animation</h3>
+                    <p class="text-gray-600 mb-4">Video editing, animation, explainer videos, and motion graphics</p>
+                    <a href="https://www.fiverr.com/categories/video-animation" target="_blank" rel="nofollow" class="text-green-600 font-medium hover:text-green-700">
+                        Explore Video Services →
+                    </a>
+                </div>
+                
+                <!-- Category 6 -->
+                <div class="category-card bg-white rounded-2xl p-8 shadow-lg transition-all duration-300">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-microphone text-3xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Music & Audio</h3>
+                    <p class="text-gray-600 mb-4">Voice overs, audio production, music composition, and sound design</p>
+                    <a href="https://www.fiverr.com/categories/music-audio" target="_blank" rel="nofollow" class="text-green-600 font-medium hover:text-green-700">
+                        Explore Audio Services →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Featured Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Hand-picked services from top-rated Fiverr professionals</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b093fd3b-7ca8-4d15-ab4f-20d90ad21c2b.png" alt="Professional logo design process showing sketches, digital mockups, and final branding package" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Premium Logo Design</h3>
+                        <p class="text-gray-600 mb-4">Professional logo with unlimited revisions and brand guidelines</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-green-600">From $50</span>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-medium">4.9</span>
+                                <span class="text-gray-500 ml-1">(247)</span>
+                            </div>
+                        </div>
+                        <a href="https://www.fiverr.com/search/gigs?query=logo+design&source=top_bar&search_in=everywhere&search-autocomplete-original-term=logo+design" target="_blank" rel="nofollow" class="block w-full bg-green-600 hover:bg-green-700 text-white text-center py-3 rounded-lg font-semibold transition-colors">
+                            View Service
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1e28d4c6-c822-4e94-bbb3-eb376aeea69c.png" alt="Website development dashboard showing responsive design mockups and coding interface" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Website Development</h3>
+                        <p class="text-gray-600 mb-4">Custom responsive website with modern design and SEO optimization</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-green-600">From $150</span>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-medium">4.8</span>
+                                <span class="text-gray-500 ml-1">(189)</span>
+                            </div>
+                        </div>
+                        <a href="https://www.fiverr.com/search/gigs?query=website+development&source=top_bar&search_in=everywhere&search-autocomplete-original-term=website+development" target="_blank" rel="nofollow" class="block w-full bg-green-600 hover:bg-green-700 text-white text-center py-3 rounded-lg font-semibold transition-colors">
+                            View Service
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white rounded-2xl overflow-hidden shadow-lg transition-all duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/67085b52-3801-4f47-97f5-72e174faaa6c.png" alt="Professional voice over recording studio setup with high-quality microphone and audio equipment" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Professional Voice Over</h3>
+                        <p class="text-gray-600 mb-4">Crystal clear voice recordings for commercials, videos, and presentations</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-green-600">From $30</span>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                <span class="font-medium">4.9</span>
+                                <span class="text-gray-500 ml-1">(312)</span>
+                            </div>
+                        </div>
+                        <a href="https://www.fiverr.com/search/gigs?query=voice+over&source=top_bar&search_in=everywhere&search-autocomplete-original-term=voice+over" target="_blank" rel="nofollow" class="block w-full bg-green-600 hover:bg-green-700 text-white text-center py-3 rounded-lg font-semibold transition-colors">
+                            View Service
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://www.fiverr.com/" target="_blank" rel="nofollow" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors">
+                    Explore All Services
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog/Tips Section -->
+    <section id="blog" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Freelancing Tips & Insights</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Expert advice to help you succeed with freelance services</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f647a2da-8bbb-497c-ad67-6318e7788caa.png" alt="Business person reviewing project timeline and milestones on digital tablet" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-sm text-green-600 font-semibold">Project Management</span>
+                        <h3 class="text-xl font-semibold mb-3 mt-2">How to Effectively Manage Remote Freelancers</h3>
+                        <p class="text-gray-600 mb-4">Learn best practices for communication, deadlines, and quality control when working with remote talent.</p>
+                        <a href="#" class="text-green-600 font-medium hover:text-green-700">Read More →</a>
+                    </div>
+                </article>
+                
+                <!-- Article 2 -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/de27c908-5f0f-403a-8ca9-e33c04600f32.png" alt="Comparative analysis showing budget savings from outsourcing versus in-house hiring" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-sm text-blue-600 font-semibold">Cost Savings</span>
+                        <h3 class="text-xl font-semibold mb-3 mt-2">Maximizing ROI with Freelance Services</h3>
+                        <p class="text-gray-600 mb-4">Discover how businesses save up to 60% on operational costs by leveraging freelance talent.</p>
+                        <a href="#" class="text-green-600 font-medium hover:text-green-700">Read More →</a>
+                    </div>
+                </article>
+                
+                <!-- Article 3 -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/27ca7fb6-2026-4275-b40e-84449ae5d250.png" alt
+```
